@@ -47,6 +47,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 
 
@@ -57,7 +58,7 @@ data class navData(
     val  badge:Int?=0)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun babi()
+fun babi(navController: NavController)
 {
 
     val items= listOf(
@@ -125,24 +126,9 @@ fun babi()
 
 
         }
-
     )
 
-
-
-
-
-
-
-
-
-
-
-
-
     {
-
-
 
     Scaffold(modifier = Modifier.fillMaxSize().nestedScroll(scrollbehaviour.nestedScrollConnection),
         topBar = {
@@ -167,7 +153,7 @@ fun babi()
                     IconButton(onClick = { }) {
                         Icon(Icons.Default.Edit, contentDescription = "this is menu")
                     }
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = {navController.navigate(Route.fav+"/john") }) {
                         Icon(Icons.Default.Favorite, contentDescription = "this is menu")
                     }
 
@@ -224,7 +210,7 @@ fun babi()
 
             }
         } else {
-            LazyColumn(modifier = Modifier.padding(paddingValues)) {
+            LazyColumn(modifier = Modifier.padding(paddingValues).fillMaxWidth()) {
                 items(100) { item ->
                     Text(text = "krishal $item", modifier = Modifier.padding(16.dp))
                 }
